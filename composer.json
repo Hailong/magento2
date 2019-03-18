@@ -262,6 +262,7 @@
     "conflict": {
         "gene/bluefoot": "*"
     },
+    "type": "magento2-component",
     "extra": {
         "component_paths": {
             "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
