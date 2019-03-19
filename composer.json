@@ -801,6 +801,9 @@
             "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\": "app/code/Magento/"
         },
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
         "exclude-from-classmap": [
             "**/dev/**",
             "**/update/**",
