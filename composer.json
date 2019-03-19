@@ -799,7 +799,7 @@
     "autoload": {
         "psr-4": {
             "Magento\\Framework\\": "lib/internal/Magento/Framework/",
-            "Magento\\": "app/code/Magento/",
+            "Magento\\": "app/code/Magento/"
         },
         "exclude-from-classmap": [
             "**/dev/**",
