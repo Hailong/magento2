@@ -337,14 +337,6 @@
                 "app/bootstrap.php"
             ],
             [
-                "app/design/adminhtml/Magento",
-                "app/design/adminhtml/Magento"
-            ],
-            [
-                "app/design/frontend/Magento",
-                "app/design/frontend/Magento"
-            ],
-            [
                 "app/etc/NonComposerComponentRegistration.php",
                 "app/etc/NonComposerComponentRegistration.php"
             ],
