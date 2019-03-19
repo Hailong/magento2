@@ -769,32 +769,8 @@
                 "pub/static/.htaccess"
             ],
             [
-                "setup/config",
-                "setup/config"
-            ],
-            [
-                "setup/performance-toolkit",
-                "setup/performance-toolkit"
-            ],
-            [
-                "setup/pub",
-                "setup/pub"
-            ],
-            [
-                "setup/view",
-                "setup/view"
-            ],
-            [
-                "setup/.htaccess",
-                "setup/.htaccess"
-            ],
-            [
-                "setup/index.php",
-                "setup/index.php"
-            ],
-            [
-                "setup/src/.htaccess",
-                "setup/src/.htaccess"
+                "setup",
+                "setup"
             ],
             [
                 "var/.htaccess",
@@ -815,9 +791,7 @@
     "autoload": {
         "psr-4": {
             "Magento\\Framework\\": "lib/internal/Magento/Framework/",
-            "Magento\\Setup\\": "setup/src/Magento/Setup/",
-            "Magento\\": "app/code/Magento/",
-            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+            "Magento\\": "app/code/Magento/"
         },
         "files": [
             "app/etc/NonComposerComponentRegistration.php"
