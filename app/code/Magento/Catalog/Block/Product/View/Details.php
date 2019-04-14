@@ -16,7 +16,7 @@ namespace Magento\Catalog\Block\Product\View;
  * @api
  * @since 103.0.1
  */
-class Details extends Description
+class Details extends \Magento\Framework\View\Element\Template
 {
     /**
      * Get sorted child block names.
