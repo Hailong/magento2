@@ -169,6 +169,10 @@ class Transparent extends Payflowpro implements TransparentInterface
         $request->setData('currency', $order->getBaseCurrencyCode());
         $request->setData('taxamt', $this->formatPrice($order->getBaseTaxAmount()));
         $request->setData('freightamt', $this->formatPrice($order->getBaseShippingAmount()));
+        // Temporary workaround for multiple currency.
+        $request->setData('currency', $order->getOrderCurrencyCode());
+        $request->setData('taxamt', $this->formatPrice($order->getTaxAmount()));
+        $request->setData('freightamt', $this->formatPrice($order->getShippingAmount()));
 
         $response = $this->postRequest($request, $this->getConfig());
         $this->processErrors($response);

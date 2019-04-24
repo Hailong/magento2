@@ -35,6 +35,8 @@ class CaptureOperation extends AbstractOperation
             return $payment;
         }
         $amountToCapture = $payment->formatAmount($invoice->getBaseGrandTotal());
+        // Temporary workaround for multiple currency.
+        $amountToCapture = $payment->formatAmount($invoice->getGrandTotal());
         $order = $payment->getOrder();
 
         $payment->setTransactionId(

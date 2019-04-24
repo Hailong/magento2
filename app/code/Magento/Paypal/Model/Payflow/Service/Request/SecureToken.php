@@ -65,6 +65,8 @@ class SecureToken
         $request->setVerbosity('HIGH');
         $request->setAmt(0);
         $request->setCurrency($quote->getBaseCurrencyCode());
+        // Temporary workaround for multiple currency.
+        $request->setCurrency($quote->getQuoteCurrencyCode());
         $request->setCreatesecuretoken('Y');
         $request->setSecuretokenid($this->mathRandom->getUniqueHash());
         $request->setReturnurl($this->url->getUrl('paypal/transparent/response'));

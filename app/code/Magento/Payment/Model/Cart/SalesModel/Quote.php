@@ -51,6 +51,8 @@ class Quote implements \Magento\Payment\Model\Cart\SalesModel\SalesModelInterfac
                     'name' => $item->getName(),
                     'qty' => (int)$item->getTotalQty(),
                     'price' => (double)$item->getBaseCalculationPrice(),
+                    // Temporary workaround for multiple currency.
+                    'price' => (double)$item->getCalculationPrice(),
                     'original_item' => $item,
                 ]
             );
@@ -89,6 +91,39 @@ class Quote implements \Magento\Payment\Model\Cart\SalesModel\SalesModelInterfac
     public function getBaseDiscountAmount()
     {
         return $this->_address->getBaseDiscountAmount();
+    }
+
+    // Temporary workaround for multiple currency.
+    /**
+     * {@inheritdoc}
+     */
+    public function getSubtotal()
+    {
+        return $this->_salesModel->getSubtotal();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxAmount()
+    {
+        return $this->_address->getTaxAmount();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getShippingAmount()
+    {
+        return $this->_address->getShippingAmount();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDiscountAmount()
+    {
+        return $this->_address->getDiscountAmount();
     }
 
     /**

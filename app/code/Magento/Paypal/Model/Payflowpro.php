@@ -421,6 +421,8 @@ class Payflowpro extends \Magento\Payment\Model\Method\Cc implements GatewayInte
             $request->setOrigid($payment->getAdditionalInformation(self::PNREF));
             $payment->unsAdditionalInformation(self::PNREF);
             $request->setData('currency', $payment->getOrder()->getBaseCurrencyCode());
+            // Temporary workaround for multiple currency.
+            $request->setData('currency', $payment->getOrder()->getOrderCurrencyCode());
         } elseif ($payment->getParentTransactionId()) {
             $request = $this->buildBasicRequest();
             $request->setOrigid($payment->getParentTransactionId());

@@ -133,6 +133,8 @@ class Cart extends \Magento\Payment\Model\Cart
 
             // aggregate item price if item qty * price does not match row total
             $itemBaseRowTotal = $item->getOriginalItem()->getBaseRowTotal();
+            // Temporary workaround for multiple currency.
+            $itemBaseRowTotal = $item->getOriginalItem()->getRowTotal();
             if ($amount * $qty != $itemBaseRowTotal) {
                 $amount = (double)$itemBaseRowTotal;
                 $subAggregatedLabel = ' x' . $qty;
@@ -146,10 +148,16 @@ class Cart extends \Magento\Payment\Model\Cart
             );
         }
 
-        $this->addSubtotal($this->_salesModel->getBaseSubtotal());
+/*      $this->addSubtotal($this->_salesModel->getBaseSubtotal());
         $this->addTax($this->_salesModel->getBaseTaxAmount());
         $this->addShipping($this->_salesModel->getBaseShippingAmount());
         $this->addDiscount(abs($this->_salesModel->getBaseDiscountAmount()));
+*/      // Temporary workaround for multiple currency.
+        $this->addSubtotal($this->_salesModel->getSubtotal());
+        $this->addTax($this->_salesModel->getTaxAmount());
+        $this->addShipping($this->_salesModel->getShippingAmount());
+        $this->addDiscount(abs($this->_salesModel->getDiscountAmount()));
+
     }
 
     /**

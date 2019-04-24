@@ -79,6 +79,39 @@ class Order implements \Magento\Payment\Model\Cart\SalesModel\SalesModelInterfac
         return $this->_salesModel->getBaseDiscountAmount();
     }
 
+    // Temporary workaround for multiple currency.
+    /**
+     * {@inheritdoc}
+     */
+    public function getSubtotal()
+    {
+        return $this->_salesModel->getSubtotal();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxAmount()
+    {
+        return $this->_salesModel->getTaxAmount();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getShippingAmount()
+    {
+        return $this->_salesModel->getShippingAmount();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDiscountAmount()
+    {
+        return $this->_salesModel->getDiscountAmount();
+    }
+
     /**
      * {@inheritdoc}
      */

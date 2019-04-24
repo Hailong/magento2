@@ -504,8 +504,12 @@ class Checkout
             ? \Magento\Paypal\Model\Config::EC_SOLUTION_TYPE_MARK
             : $this->_config->getValue('solutionType');
         $totalAmount = round($this->_quote->getBaseGrandTotal(), 2);
+        // Temporary workaround for multiple currency.
+        $totalAmount = round($this->_quote->getGrandTotal(), 2);
         $this->_getApi()->setAmount($totalAmount)
             ->setCurrencyCode($this->_quote->getBaseCurrencyCode())
+            // Temporary workaround for multiple currency.
+            ->setCurrencyCode($this->_quote->getQuoteCurrencyCode())
             ->setInvNum($this->_quote->getReservedOrderId())
             ->setReturnUrl($returnUrl)
             ->setCancelUrl($cancelUrl)

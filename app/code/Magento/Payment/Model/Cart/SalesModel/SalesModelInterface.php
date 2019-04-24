@@ -42,6 +42,31 @@ interface SalesModelInterface
      */
     public function getBaseDiscountAmount();
 
+    // Temporary workaround for multiple currency.
+    /**
+     * @return float|null
+     * @api
+     */
+    public function getSubtotal();
+
+    /**
+     * @return float|null
+     * @api
+     */
+    public function getTaxAmount();
+
+    /**
+     * @return float|null
+     * @api
+     */
+    public function getShippingAmount();
+
+    /**
+     * @return float|null
+     * @api
+     */
+    public function getDiscountAmount();
+
     /**
      * Wrapper for \Magento\Framework\DataObject getDataUsingMethod method
      *

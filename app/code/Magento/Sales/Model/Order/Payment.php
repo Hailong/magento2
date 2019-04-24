@@ -444,7 +444,8 @@ class Payment extends Info implements OrderPaymentInterface
                 $this->_order($baseTotalDue);
                 break;
             case \Magento\Payment\Model\Method\AbstractMethod::ACTION_AUTHORIZE:
-                $this->authorize(true, $baseTotalDue);
+                // Temporary workaround for multiple currency.
+                $this->authorize(true, $totalDue);
                 // base amount will be set inside
                 $this->setAmountAuthorized($totalDue);
                 break;

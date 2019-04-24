@@ -169,6 +169,8 @@ class Totals extends \Magento\Framework\View\Element\Template
                 [
                     'code' => 'base_grandtotal',
                     'value' => $this->getOrder()->formatBasePrice($source->getBaseGrandTotal()),
+                    // Temporary workaround for multiple currency.
+                    'value' => $this->getOrder()->formatPrice($source->getGrandTotal()),
                     'label' => __('Grand Total to be Charged'),
                     'is_formated' => true,
                 ]
