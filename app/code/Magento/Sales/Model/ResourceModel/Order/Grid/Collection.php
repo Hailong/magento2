@@ -43,6 +43,13 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
     {
         parent::_initSelect();
 
+        $this->getSelect()->join(
+            ['order_address' => $this->getTable('sales_order_address')],
+            'main_table.entity_id=order_address.entity_id',
+            ['country_id']
+        );
+        $this->addFilterToMap('country_id', 'order_address.' . 'country_id');
+
         $tableDescription = $this->getConnection()->describeTable($this->getMainTable());
         foreach ($tableDescription as $columnInfo) {
             $this->addFilterToMap($columnInfo['COLUMN_NAME'], 'main_table.' . $columnInfo['COLUMN_NAME']);
