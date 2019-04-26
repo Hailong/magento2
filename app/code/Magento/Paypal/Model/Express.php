@@ -670,7 +670,9 @@ class Express extends \Magento\Payment\Model\Method\AbstractMethod
         )->setInvNum(
             $order->getIncrementId()
         )->setCurrencyCode(
-            $order->getBaseCurrencyCode()
+            // $order->getBaseCurrencyCode()
+            // Temporary workaround for multiple currency.
+            $order->getOrderCurrencyCode()
         )->setPaypalCart(
             $cart
         )->setIsLineItemsEnabled(
