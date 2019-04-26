@@ -39,4 +39,20 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
     ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $mainTable, $resourceModel);
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function _initSelect()
+    {
+        parent::_initSelect();
+
+        $this->getSelect()->join(
+            ['order_address' => $this->getTable('sales_order_address')],
+            'main_table.order_id=order_address.parent_id',
+            ['country_id']
+        )->group(['main_table.entity_id']);
+
+        return $this;
+    }
 }

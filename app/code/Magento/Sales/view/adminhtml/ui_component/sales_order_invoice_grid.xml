@@ -206,6 +206,12 @@
                 <visible>false</visible>
             </settings>
         </column>
+        <column name="country_id" class="Magento\Sales\Ui\Component\Listing\Column\Country">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Country</label>
+            </settings>
+        </column>
         <actionsColumn name="actions" class="Magento\Sales\Ui\Component\Listing\Column\ViewAction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

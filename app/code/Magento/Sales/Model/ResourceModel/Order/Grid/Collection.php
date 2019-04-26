@@ -45,9 +45,9 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
 
         $this->getSelect()->join(
             ['order_address' => $this->getTable('sales_order_address')],
-            'main_table.entity_id=order_address.entity_id',
+            'main_table.entity_id=order_address.parent_id',
             ['country_id']
-        );
+        )->group(['main_table.entity_id']);
         $this->addFilterToMap('country_id', 'order_address.' . 'country_id');
 
         $tableDescription = $this->getConnection()->describeTable($this->getMainTable());
