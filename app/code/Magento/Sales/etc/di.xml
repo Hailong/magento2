@@ -533,6 +533,7 @@
                 <item name="customer_name" xsi:type="object">CustomerNameAggregator</item>
                 <item name="payment_method" xsi:type="string">sales_order_payment.method</item>
                 <item name="total_refunded" xsi:type="string">sales_order.total_refunded</item>
+                <item name="order_notes" xsi:type="string">sales_order.order_notes</item>
             </argument>
             <argument name="notSyncedDataProvider" xsi:type="object">Magento\Sales\Model\ResourceModel\Provider\NotSyncedOrderDataProvider</argument>
         </arguments>
