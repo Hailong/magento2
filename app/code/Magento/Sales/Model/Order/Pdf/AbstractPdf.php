@@ -610,6 +610,58 @@ abstract class AbstractPdf extends \Magento\Framework\DataObject
             $this->y = $currentY;
             $this->y -= 15;
         }
+
+        /* Comments */
+        $paymentsEndY = $this->y;
+
+        $statusHistoryCollection = $order->getStatusHistoryCollection(true);
+
+        $page->setFillColor(new \Zend_Pdf_Color_Rgb(0.93, 0.92, 0.92));
+        $page->setLineWidth(0.5);
+        $page->drawRectangle(25, $this->y, 570, $this->y - 25);
+
+        $this->y -= 15;
+        $this->_setFontBold($page, 12);
+        $page->setFillColor(new \Zend_Pdf_Color_GrayScale(0));
+        $page->drawText(__('Comments:'), 35, $this->y, 'UTF-8');
+
+        $this->y -= 10;
+        $page->setFillColor(new \Zend_Pdf_Color_GrayScale(1));
+
+        $this->_setFontRegular($page, 10);
+        $page->setFillColor(new \Zend_Pdf_Color_GrayScale(0));
+
+        $paymentLeft = 35;
+        $yComments = $this->y - 15;
+
+        foreach ($statusHistoryCollection as $item) {
+            $comment = $item->getComment();
+            $comment = trim($comment);
+
+            if (!$item->getIsVisibleOnFront() && strpos($comment, 'Customer note: ') === FALSE) {
+                continue;
+            }
+
+            if ($comment != '') {
+                $comment = preg_replace('/<br[^>]*>/i', "\n", $comment);
+                $createdAt = $this->_localeDate->formatDateTime(
+                    $item->getCreatedAt(),
+                    \IntlDateFormatter::MEDIUM,
+                    \IntlDateFormatter::MEDIUM
+                );
+
+                $page->drawText($createdAt . " - " . strip_tags($comment), $paymentLeft, $yComments, 'UTF-8');
+                $yComments -= 15;
+            }
+        }
+
+        // replacement of Shipments-Payments rectangle block
+        $yComments = min($paymentsEndY, $yComments);
+        $page->drawLine(25, $paymentsEndY, 25, $yComments);
+        $page->drawLine(570, $paymentsEndY, 570, $yComments);
+        $page->drawLine(25, $yComments, 570, $yComments);
+
+        $this->y = $yComments - 15;
     }
 
     /**
