@@ -265,7 +265,7 @@
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="customer_note">
+        <column name="order_notes">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Customer Note</label>
