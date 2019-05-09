@@ -87,10 +87,12 @@ abstract class Sender
             $this->logger->error($e->getMessage());
             return false;
         }
-        try {
-            $sender->sendCopyTo();
-        } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
+        if ($this->identityContainer->getCopyMethod() == 'copy') {
+            try {
+                $sender->sendCopyTo();
+            } catch (\Exception $e) {
+                $this->logger->error($e->getMessage());
+            }
         }
         return true;
     }

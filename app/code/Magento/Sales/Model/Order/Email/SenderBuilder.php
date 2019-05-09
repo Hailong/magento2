@@ -78,14 +78,13 @@ class SenderBuilder
     /**
      * Prepare and send copy email message
      *
-     * @param bool|false $toBcc
      * @return void
      */
-    public function sendCopyTo($toBcc = false)
+    public function sendCopyTo()
     {
         $copyTo = $this->identityContainer->getEmailCopyTo();
 
-        if (!empty($copyTo) && ($this->identityContainer->getCopyMethod() == 'copy' || $toBcc)) {
+        if (!empty($copyTo)) {
             foreach ($copyTo as $email) {
                 $this->configureEmailTemplate();
 
